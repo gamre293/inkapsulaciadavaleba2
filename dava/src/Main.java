@@ -1,14 +1,12 @@
-import java.sql.*;
+import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
-        String sql = "select id";
-        String url = "jdbc:postgresql://localhost:5432/telusko";
-        String username = "postgres";
-        String password = "0000";
-
-        Connection con = DriverManager.getConnection(url, username, password);
-        Statement st = con.createStatement();
-        st.executeQuery(sql);
+    public static void main(String[] args) {
+     DatabaseConnectionManager dcm = new DatabaseConnectionManager();
+        try {
+            dcm.getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
